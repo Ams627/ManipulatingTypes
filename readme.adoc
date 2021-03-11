@@ -1,0 +1,50 @@
+:toc:
+:sectnums:
+:toclevels: 5
+:sectnumlevels: 5
+:showcomments:
+:xrefstyle: short
+:icons: font
+:source-highlighter: coderay
+:tick: &#x2714;
+:pound: &#xA3;
+
+= Manipulating types in C#
+
+== The Type `Type`
+
+Information about types such as `int`, `string`, `XDocument` or any type you define yourself
+is represented by the type `System.Type` (normally we just use 
+`Type` without the `System` namespace qualifier because our code has `using System` at the head of the file).
+
+To get the `Type` of a type, using the `typeof` operator. To get the `Type` of a variable use the `GetType()` method:
+
+[source,csharp]
+----
+long l = 0;
+Type type1 = typeof(int);
+Type type2 = 3.GetType();
+Type type3 = l.GetType();
+Type type4 = typeof(X);
+Type type5 = "Hello".GetType();
+Console.WriteLine($"{type1}");
+Console.WriteLine($"{type2}");
+Console.WriteLine($"{type3}");
+Console.WriteLine($"{type4}");
+Console.WriteLine($"{type5}");
+----
+
+This prints the following:
+
+image::images/output1.png[]
+
+
+== Getting a `Type` from a string containing a type name
+
+`Type.GetType` returns a `System.Type` for the string. If the type does not exist it returns `null`.
+
+[WARNING]
+`Type.GetType` does not work with C# type aliases.
+
+
+
